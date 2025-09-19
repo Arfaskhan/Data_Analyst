@@ -1,11 +1,15 @@
 Excel Data Analysis & Dashboard Project
+--------------------------------------
 
 Project Overview:
+-------------------
 This project demonstrates hands-on practice with Excel, including data cleaning, analysis, pivot tables, charts, and dashboards. The dataset includes original and cleaned data, and the project showcases 12 practice exercises as well as 6 dashboard use cases.
 
 Tech Used:
+--------------
 
 Microsoft Excel :
+-------------------
 
   Formulas & Functions (SUM, AVERAGE, IF, COUNT, etc.)
 
@@ -16,6 +20,7 @@ Microsoft Excel :
   Data Cleaning & Transformation
 
 Dashboard Use Cases (Screenshots Folder):
+-------------------------------------------
 
   1.Product Type vs Total Expense, Sales, Profit
 
