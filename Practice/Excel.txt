@@ -1,0 +1,144 @@
+Sum --> =SUM(C5R1:C5R10)
+
+Average --> =AVERAGE(C5R1:C5R10)
+
+Min --> =MIN(C5R1:C5R10)		[..C- Column,R-Row]..C5R1:C5R10 --> need to calculate a specific column...here Column 5 is the specific column example Salary column...
+                                        then R1:R10 means chose 10 rows in 5th column(salary)....if more Rows, click R1 and then Use cntrl+shift+ down to select all row in a column..if all column need...
+Max--> =MAX(C5R1:C5R10)  
+                
+Count--> =COUNT(C5R1:C5R10)
+
+Count alphabetic --> =COUNTA(C5R1:C5R10)....it counts only alphabetic columns like name,department.....
+
+Count if --> =COUNTIF(C5R1:C5R10,">15000")...It counts only the row in salary column greater than 15000...
+
+Relative Reference :
+	Cell reference that changes automatically when you copy or drag the formula to another cell.
+	Example:
+		In cell C1 → =A1 + B1
+		If you copy it to C2, it becomes =A2 + B2
+	Use Case: Helpful when you want the formula to adjust row/column automatically (like summing each row).
+
+Absolute Reference :
+	Cell reference that does not change when you copy or drag the formula. It is "locked" using $.
+	Example:
+		In cell C1 → =A1 * $B$1
+		If you copy it to C2, it remains =A2 * $B$1 (column B row 1 stays fixed).
+	Use Case: Helpful when you always want to use a fixed value, like a tax rate or discount stored in one cell.
+
+Mixed References :
+	A cell reference where either the row or the column is fixed (with $), but not both.
+	It’s a “mix” of relative + absolute.
+
+	Types of Mixed References
+		$A1 → Column A is fixed, row changes when copied.
+		A$1 → Row 1 is fixed, column changes when copied.
+
+	Example :
+		if we have 5 columns and 100 rows..1st column and row has values....using this B2=$A2*B$1.....to fill other empty columna nd rows...
+		|   | A | B | C | D |
+		| 1 | 1 | 2 | 3 | 4 | 
+		| 2 | 2 |   |   |   |
+		| 3 | 3 |   |   |   |
+		| 4 | 4 |   |   |   |
+
+
+IF --> Tests one condition and returns one value if TRUE, another if FALSE.
+	Example ....=IF(A1>50, "Pass", "Fail")...If A1 > 50 → shows Pass, else Fail.
+
+Nested IF --> Nested IF is when we use multiple IFs inside each other to handle more than one condition.Useful if you don’t have IFS (older Excel versions).
+	Example...=IF(A1>=90,"A", IF(A1>=75,"B", IF(A1>=50,"C","Fail")))
+
+IFS --> Tests multiple conditions in one formula. Returns the value for the first TRUE condition.
+	Example.....=IFS(A1>=90,"A", A1>=75,"B", A1>=50,"C", A1<50,"Fail")->If A1 = 85 → shows B.
+				(OR)
+	Example.....=IFS(A1>=90,"A", A1>=75,"B", A1>=50,"C",True,"Fail")
+
+Maxifs --> Returns the largest value that meets conditions.
+	Example ....=MAXIFS(C2:C10(Sales column), A2:A10(Region Column), "East")...Finds the maximum Sales in the East region.
+
+Minifs --> Returns the smallest value that meets conditions
+	Example ..=MINIFS(C2:C10(Sales column), A2:A10(Region Column), "East")...Finds the minimum Sales in the East region.
+
+Sumifs --> Adds numbers that meet multiple conditions.
+	Example...=SUMIFS(C2:C10(Sales column), A2:A10(Region Column), "East", B2:B10(product column), "Apple")..Adds Sales (C2:C10) where Region is East and Product is Apple.
+
+Countifs --> Counts how many rows meet multiple conditions.
+	Example ...=COUNTIFS(A2:A10(Region column),"East", B2:B10(Product column),"Apple")......Counts how many times Apple was sold in East region...
+
+Iferror --> Returns a custom value if a formula gives any error (like #N/A, #DIV/0!, #VALUE!, etc.).
+	Example ....=IFERROR(A1/B1, "Error")....If B1=0, Excel normally shows #DIV/0!. With IFERROR, it shows "Error" instead....
+
+Ifna --> Returns a custom value only if the error is #N/A (not other errors).
+	Example ...=IFNA(VLOOKUP(101, A2:B10, 2, FALSE), "Not Found")...If ID 101 is not in the table, Excel shows "Not Found" instead of #N/A.
+
+Conditional Formatting :
+	Conditional Formatting is used to automatically highlight cells based on rules. For example, I can make marks <40 turn red, or use a formula to highlight rows where sales are below target. It’s very useful for dashboards and reports.
+	Example..
+		Highlight marks below 40 in red
+		Select the marks column → Home → Conditional Formatting → Highlight Cell Rules → Less Than → enter 40.
+
+		Color top performers
+		Select marks → Conditional Formatting → Top/Bottom Rules → Top 10% → choose green fill.
+
+VLOOKUP--> looks down the first column of a table for a value and returns a value from a specified column in the same row.
+	=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
+
+HLOOKUP --> looks across the first row of a table for a value and returns a value from a specified row in the same column.
+	=HLOOKUP(lookup_value, table_array, row_index_num, [range_lookup])
+
+XLOOKUP --> modern, flexible lookup that searches a lookup_array and returns the corresponding value from a return_array. It can search left/right/up/down, handle not-found results, and return arrays.
+	=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])
+
+Data Validation --> Data Validation in Excel is a feature that controls what kind of data can be entered into a cell.
+		It helps prevent wrong or invalid data entry.
+
+Index and Match --> 
+	INDEX + MATCH is used for powerful lookups. MATCH finds the row/column position of a value, and INDEX returns the value at that position. 
+	It’s more flexible and reliable than VLOOKUP.
+	=INDEX(C2:C4, MATCH(102, A2:A4, 0))
+
+two-way lookup --> “Using two MATCH functions — one for the row and one for the column — with INDEX allows us to do a two-way lookup. 
+	This is more powerful than VLOOKUP or HLOOKUP, which only search in one direction.”
+|       | B (Jan) | C (Feb) | D (Mar) |
+| ----- | ------- | ------- | ------- |
+| **A** |         |         |         |
+| 101   | 200     | 250     | 300     |
+| 102   | 150     | 180     | 210     |
+| 103   | 400     | 420     | 500     |
+
+	=INDEX(B2:D4, MATCH(102, A2:A4, 0), MATCH("Feb", B1:D1, 0))
+
+Text Function :
+
+| Function                                                | Purpose                                      | Example                                  | Output          |
+| ------------------------------------------------------- | -------------------------------------------- | ---------------------------------------- | --------------- |
+| **LEFT(text, num\_chars)**                              | Extracts characters from the left.           | `=LEFT("Excel", 2)`                      | **Ex**          |
+| **RIGHT(text, num\_chars)**                             | Extracts characters from the right.          | `=RIGHT("Excel", 2)`                     | **el**          |
+| **MID(text, start\_num, num\_chars)**                   | Extracts characters from the middle.         | `=MID("Excel", 2, 3)`                    | **xce**         |
+| **LEN(text)**                                           | Counts number of characters.                 | `=LEN("Excel")`                          | **5**           |
+| **TRIM(text)**                                          | Removes extra spaces (except single spaces). | `=TRIM("  Data   ")`                     | **Data**        |
+| **UPPER(text)**                                         | Converts to uppercase.                       | `=UPPER("excel")`                        | **EXCEL**       |
+| **LOWER(text)**                                         | Converts to lowercase.                       | `=LOWER("EXCEL")`                        | **excel**       |
+| **PROPER(text)**                                        | Capitalizes first letter of each word.       | `=PROPER("hello world")`                 | **Hello World** |
+| **CONCATENATE / CONCAT(text1, text2, …)**               | Joins text values.                           | `=CONCAT("Data","Base")`                 | **DataBase**    |
+| **TEXTJOIN(delimiter, ignore\_empty, text1, …)**        | Joins multiple cells with a delimiter.       | `=TEXTJOIN("-", TRUE, "2025","09","14")` | **2025-09-14**  |
+| **REPLACE(old\_text, start, num\_chars, new\_text)**    | Replaces part of text.                       | `=REPLACE("Excel", 2, 2, "XX")`          | **EXXel**       |
+| **SUBSTITUTE(text, old\_text, new\_text, \[instance])** | Replaces specific text.                      | `=SUBSTITUTE("1-1-2025","-","/")`        | **1/1/2025**    |
+| **VALUE(text)**                                         | Converts text to number.                     | `=VALUE("123")`                          | **123**         |
+| **TEXT(value, format\_text)**                           | Formats numbers/dates as text.               | `=TEXT(TODAY(),"DD-MMM-YYYY")`           | **14-Sep-2025** |
+| **SEARCH(find\_text, within\_text, \[start])**          | Finds position (not case-sensitive).         | `=SEARCH("c","Excel")`                   | **3**           |
+| **FIND(find\_text, within\_text, \[start])**            | Finds position (case-sensitive).             | `=FIND("c","Excel")`                     | **3**           |
+| **CHAR(number)**                                        | Returns a character from ASCII code.         | `=CHAR(65)`                              | **A**           |
+| **CODE(text)**                                          | Returns ASCII code of first character.       | `=CODE("A")`                             | **65**          |
+
+
+Pivot tables --> A Pivot Table allows quick summarization of large datasets by grouping and aggregating data, without needing formulas.
+	 For example, you can instantly get sales totals per region or per product by dragging fields.”
+
+Slicer --> A Slicer in Excel is a visual filter tool that lets you quickly filter data in Pivot Tables, Pivot Charts, or Tables with just a click.
+Instead of dropdown filters, slicers show buttons that you can press.
+
+Report Connection --> Report Connection means linking one Slicer to multiple Pivot Tables (or Pivot Charts) so that all of them get filtered at once.
+
+Charts
