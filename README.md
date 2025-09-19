@@ -24,18 +24,14 @@ Dashboard Use Cases (Screenshots Folder):
 
   1.Product Type vs Total Expense, Sales, Profit
 
-  2.Pivot Table: Row = Product Type, Values = SUM of Total Expense, SUM of Sales, SUM of Profit
+    Pivot Table: Row = Product Type, Values = SUM of Total Expense, SUM of Sales, SUM of Profit
 
-  3.Row = Territory, Column = Product, Value = SUM of Sales
+  2.Row = Territory, Column = Product, Value = SUM of Sales
 
-  4.State vs SUM of Profit, SUM of Total Expense, SUM of Profit/Loss
+  3.State vs SUM of Profit, SUM of Total Expense, SUM of Profit/Loss and Profit/Loss = Calculated Field → SUM(Profit) - SUM(Total Expense).
 
-  5.Profit/Loss = Calculated Field → SUM(Profit) - SUM(Total Expense)
+  4.Product vs Budget Sales & Actual Sales
 
-  6.Product vs Budget Sales & Actual Sales
+  5.Row = State, Column = Territory, Value = SUM of Profit and Pivot Table with Slicer on Product Type
 
-Pivot Table with Slicer on Product Type
-
-Row = State, Column = Territory, Value = SUM of Profit
-
-Row = State, Column = Product Line, Value = SUM of Profit/Loss
+  6.Row = State, Column = Product Line, Value = SUM of Profit/Loss
